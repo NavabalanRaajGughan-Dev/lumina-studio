@@ -5,22 +5,28 @@ import gsap from 'gsap';
 
 interface PreloaderProps {
   onComplete?: () => void;
+  title?: string;
 }
 
-export function Preloader({ onComplete }: PreloaderProps) {
+export function Preloader({ onComplete, title = "LUMINA" }: PreloaderProps) {
   const preloaderRef = useRef<HTMLDivElement>(null);
-  const shutterTopRef = useRef<HTMLDivElement>(null);
-  const shutterBottomRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const apertureRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
 
+  // Use refs for callbacks to avoid re-triggering the useEffect
+  const onCompleteRef = useRef(onComplete);
+
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         onComplete: () => {
-          if (onComplete) onComplete();
+          if (onCompleteRef.current) onCompleteRef.current();
         }
       });
 
@@ -49,36 +55,13 @@ export function Preloader({ onComplete }: PreloaderProps) {
       );
 
       // Hold for a moment
-      tl.to({}, { duration: 1.5 });
+      tl.to({}, { duration: 0.5 });
 
-      // Logo fade out
-      tl.to(logoRef.current, {
-        opacity: 0,
-        scale: 0.9,
-        duration: 0.5,
-        ease: 'power3.in'
-      });
-
-      // Shutter close effect
-      tl.to([shutterTopRef.current, shutterBottomRef.current], {
-        scaleY: 1,
-        duration: 0.6,
-        ease: 'power4.inOut',
-        stagger: 0.1
-      }, '-=0.2');
-
-      // Flash effect
+      // Slide entire preloader up to reveal content
       tl.to(preloaderRef.current, {
-        backgroundColor: '#ffffff',
-        duration: 0.15,
-        ease: 'power2.out'
-      });
-
-      // Fade out preloader
-      tl.to(preloaderRef.current, {
-        opacity: 0,
-        duration: 0.4,
-        ease: 'power2.out'
+        y: '-100%',
+        duration: 1.2,
+        ease: 'power4.inOut'
       });
 
       tl.set(preloaderRef.current, { display: 'none' });
@@ -86,25 +69,13 @@ export function Preloader({ onComplete }: PreloaderProps) {
     }, preloaderRef);
 
     return () => ctx.revert();
-  }, [onComplete]);
+  }, []);
 
   return (
     <div
       ref={preloaderRef}
       className="fixed inset-0 z-[100] bg-[#0F2617] flex items-center justify-center overflow-hidden"
     >
-      {/* Shutter Blades */}
-      <div
-        ref={shutterTopRef}
-        className="absolute top-0 left-0 right-0 h-1/2 bg-[#0F2617] origin-top"
-        style={{ transform: 'scaleY(0)' }}
-      />
-      <div
-        ref={shutterBottomRef}
-        className="absolute bottom-0 left-0 right-0 h-1/2 bg-[#0F2617] origin-bottom"
-        style={{ transform: 'scaleY(0)' }}
-      />
-
       {/* Center Content */}
       <div ref={logoRef} className="relative z-10 flex flex-col items-center">
         {/* Camera Aperture SVG */}
@@ -129,8 +100,8 @@ export function Preloader({ onComplete }: PreloaderProps) {
         </div>
 
         {/* Brand Name */}
-        <h1 className="font-sans text-3xl md:text-4xl font-bold text-white tracking-wider mb-2">
-          LUMINA
+        <h1 className="font-sans text-3xl md:text-4xl font-bold text-white tracking-wider mb-2 uppercase">
+          {title}
         </h1>
         <p className="font-serif italic text-[#c4a35a] text-sm tracking-widest mb-8">
           Photography Studio
@@ -140,8 +111,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
         <div className="w-48 h-[2px] bg-white/20 rounded-full overflow-hidden">
           <div
             ref={progressRef}
-            className="h-full bg-gradient-to-r from-[#c4a35a] to-[#8b7355]"
-            style={{ width: '0%' }}
+            className="h-full bg-gradient-to-r from-[#c4a35a] to-[#8b7355] w-0"
           />
         </div>
         <span className="text-white/50 text-xs mt-3 font-mono">{progress}%</span>

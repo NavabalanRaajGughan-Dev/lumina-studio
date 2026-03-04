@@ -8,13 +8,32 @@ import { Footer } from "@/components/shared/Footer";
 import { useLenis } from "@/hooks/useLenis";
 
 export function ClientShell({ children }: { children: React.ReactNode }) {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isPreloaderVisible, setIsPreloaderVisible] = useState(true);
+    const [pageName, setPageName] = useState('LUMINA');
     const pathname = usePathname();
+    const [prevPathname, setPrevPathname] = useState(pathname);
 
     // Initialize Lenis smooth scroll
     useLenis();
 
-    // Scroll to top on route change
+    // Formats pathname to a display name
+    const getPageName = (path: string) => {
+        if (path === '/' || path === '') return 'LUMINA';
+        // e.g. "/print-store" -> "Print Store"
+        const name = path.substring(1).replace(/-/g, ' ');
+        // capitalize each word
+        return name.replace(/\b\w/g, l => l.toUpperCase());
+    };
+
+    // Intercept route changes during render to prevent a split-second flash
+    // React will immediately process these state updates before the browser paints
+    if (pathname !== prevPathname) {
+        setPrevPathname(pathname);
+        setPageName(getPageName(pathname));
+        setIsPreloaderVisible(true);
+    }
+
+    // Scroll handling on route change
     useEffect(() => {
         window.scrollTo(0, 0);
         const timer = setTimeout(() => {
@@ -35,20 +54,16 @@ export function ClientShell({ children }: { children: React.ReactNode }) {
 
 
     const handlePreloaderComplete = () => {
-        setIsLoading(false);
+        setIsPreloaderVisible(false);
     };
 
     return (
         <>
-            {isLoading && <Preloader onComplete={handlePreloaderComplete} />}
-            <div
-                className={`${isLoading ? "opacity-0" : "opacity-100"} transition-opacity duration-500`}
-            >
-                <div className="relative min-h-screen">
-                    <Navigation />
-                    <main className="relative">{children}</main>
-                    <Footer />
-                </div>
+            {isPreloaderVisible && <Preloader onComplete={handlePreloaderComplete} title={pageName} />}
+            <div className="relative min-h-screen">
+                <Navigation />
+                <main className="relative">{children}</main>
+                <Footer />
             </div>
         </>
     );

@@ -173,9 +173,9 @@ export function Portfolio() {
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`px-5 py-2.5 rounded-full text-sm font-body transition-all duration-300 ${activeCategory === cat.id
-                  ? 'bg-white text-forest-dark'
-                  : 'bg-white/10 text-white/70 hover:bg-white/20 hover:text-white'
+              className={`px-6 py-3 rounded-full text-sm font-body font-medium tracking-wide transition-all duration-300 border ${activeCategory === cat.id
+                ? 'bg-[#c4a35a] text-white border-[#c4a35a] shadow-lg shadow-[#c4a35a]/20'
+                : 'bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/40'
                 }`}
             >
               {cat.label}
@@ -227,6 +227,8 @@ export function Portfolio() {
           {/* Close Button */}
           <button
             onClick={closeLightbox}
+            title="Close Lightbox"
+            aria-label="Close Lightbox"
             className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
           >
             <X className="w-6 h-6" />
@@ -235,12 +237,16 @@ export function Portfolio() {
           {/* Navigation */}
           <button
             onClick={prevImage}
+            title="Previous Image"
+            aria-label="Previous Image"
             className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
           <button
             onClick={nextImage}
+            title="Next Image"
+            aria-label="Next Image"
             className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
           >
             <ChevronRight className="w-6 h-6" />

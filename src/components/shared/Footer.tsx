@@ -40,11 +40,7 @@ export function Footer() {
               y="50%"
               dominantBaseline="middle"
               textAnchor="middle"
-              className="fill-softblack font-sans font-extrabold"
-              style={{
-                fontSize: '90px',
-                letterSpacing: '-0.03em',
-              }}
+              className="fill-softblack font-sans font-extrabold text-[90px] tracking-[-0.03em]"
             >
               LUMINA
             </text>

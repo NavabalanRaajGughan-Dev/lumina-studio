@@ -10,7 +10,7 @@
   --font-body: 'DM Sans', sans-serif;
 
   /* Custom brand colors */
-  --color-forest-dark: #0d1310;
+  --color-forest-dark: #0F2617;
   --color-forest-mid: #1a2420;
   --color-forest-light: #2a3a34;
   --color-offwhite: #f4f4f4;
@@ -116,7 +116,7 @@
   --radius: 0.5rem;
 
   /* Custom properties */
-  --forest-dark: #0d1310;
+  --forest-dark: #0F2617;
   --forest-mid: #1a2420;
   --off-white: #f4f4f4;
   --pure-white: #ffffff;
