@@ -21,20 +21,6 @@ export function Hero() {
       // Store ScrollTrigger instances for cleanup
       const triggers: ScrollTrigger[] = [];
 
-      // Parallax effect for main text
-      const textTrigger = ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1,
-        onUpdate: (self) => {
-          if (textRef.current) {
-            gsap.set(textRef.current, { yPercent: self.progress * 50 });
-          }
-        },
-      });
-      triggers.push(textTrigger);
-
       // Parallax effect for model (slower movement = appears closer)
       const modelTrigger = ScrollTrigger.create({
         trigger: sectionRef.current,
@@ -75,9 +61,9 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-forest-dark"
+      className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-forest-dark"
     >
-      {/* Layer 1: Video Background */}
+      {/* Layer 1: Background Base & Subtle Video */}
       <div className="absolute inset-0 z-0">
         <video
           ref={videoRef}
@@ -85,11 +71,11 @@ export function Hero() {
           muted
           loop
           playsInline
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover opacity-20"
         >
           <source src="https://assets.mixkit.co/videos/preview/mixkit-photographer-taking-photos-at-a-wedding-34421-large.mp4" type="video/mp4" />
         </video>
-        {/* Dark overlay for better text readability */}
+        {/* Dark overlay for text readability and premium look */}
         <div className="absolute inset-0 bg-linear-to-b from-forest-dark/80 via-forest-dark/60 to-forest-dark/90" />
       </div>
 
@@ -101,52 +87,45 @@ export function Hero() {
         }}
       />
 
-      {/* Layer 2: Big Text */}
-      <div
-        ref={textRef}
-        className="absolute inset-0 flex items-center justify-center z-10 will-change-transform"
-      >
-        <h1 className="text-[12vw] md:text-[14vw] lg:text-[16vw] font-sans font-extrabold text-white/10 tracking-tighter leading-none select-none whitespace-nowrap">
-          {heroConfig.backgroundText}
-        </h1>
-      </div>
 
-      {/* Layer 3: Hero Model Image (Cutout) */}
-      {heroConfig.heroImage && (
+      {/* Layer 3: Primary Subtitle/Tagline Structured Behind the Image */}
+      {heroConfig.overlayText && (
         <div
-          ref={modelRef}
-          className="absolute inset-0 flex items-end justify-center z-20 will-change-transform"
+          ref={overlayTextRef}
+          className="absolute inset-0 flex items-center justify-center z-[15] pointer-events-none px-4"
         >
-          <div className="relative w-[50vw] md:w-[35vw] lg:w-[28vw] max-w-[500px]">
-            <img
-              src={heroConfig.heroImage}
-              alt={heroConfig.heroImageAlt}
-              className="w-full h-auto object-contain"
-              loading="eager"
-            />
-            {/* Gradient fade at bottom for smooth transition */}
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-forest-dark to-transparent" />
+          <div className="flex flex-col items-center text-center max-w-4xl mx-auto -mt-20 md:-mt-32 drop-shadow-2xl">
+            <p className="font-serif italic text-4xl md:text-5xl lg:text-7xl text-white/90 tracking-wide leading-tight">
+              {heroConfig.overlayText}
+            </p>
           </div>
         </div>
       )}
 
-      {/* Layer 4: Overlay Text */}
-      {heroConfig.overlayText && (
+      {/* Layer 4: Hero Model Image (Cutout) */}
+      {heroConfig.heroImage && (
         <div
-          ref={overlayTextRef}
-          className="absolute bottom-[15%] right-[8%] md:right-[12%] z-30 will-change-transform"
+          ref={modelRef}
+          className="relative flex flex-col items-center justify-end z-20 will-change-transform pt-32 pointer-events-none"
         >
-          <p className="font-serif italic text-xl md:text-2xl lg:text-3xl text-white/90 tracking-wide">
-            {heroConfig.overlayText}
-          </p>
+          <div className="relative w-[60vw] md:w-[45vw] lg:w-[35vw] max-w-[600px] -mb-10 lg:-mb-20">
+            <img
+              src={heroConfig.heroImage}
+              alt={heroConfig.heroImageAlt}
+              className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+              loading="eager"
+            />
+            {/* Gradient fade at bottom for smooth transition to next section */}
+            <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-forest-dark via-forest-dark/80 to-transparent" />
+          </div>
         </div>
       )}
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2">
-        <span className="text-white/50 text-xs font-body uppercase tracking-widest">Scroll</span>
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
-          <div className="w-1.5 h-3 bg-white/50 rounded-full animate-bounce" />
+        <span className="text-white/50 text-xs font-body uppercase tracking-widest font-medium">Scroll</span>
+        <div className="w-5 h-9 border-2 border-white/20 rounded-full flex justify-center pt-2">
+          <div className="w-1 h-2.5 bg-white/50 rounded-full animate-bounce" />
         </div>
       </div>
     </section>

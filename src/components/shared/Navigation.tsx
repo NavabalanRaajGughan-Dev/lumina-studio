@@ -37,26 +37,26 @@ export function Navigation() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-          ? 'bg-forest-dark/95 backdrop-blur-md py-3'
-          : 'bg-transparent py-5'
+        ? 'bg-forest-dark/95 backdrop-blur-md py-3 shadow-xs border-b border-white/5'
+        : 'bg-transparent py-5'
         }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="text-white font-sans font-bold text-xl tracking-tight">
+          <Link href="/" className={`font-sans font-bold text-xl tracking-tight transition-colors duration-300 ${isScrolled ? 'text-white' : 'text-white'}`}>
             LUMINA
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-6">
+          {/* Desktop Navigation - Centered Absolutely */}
+          <div className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className={`text-sm font-body transition-colors duration-300 ${isActive(link.href)
-                    ? 'text-white'
-                    : 'text-white/60 hover:text-white'
+                className={`text-[15px] font-body transition-colors duration-300 ${isActive(link.href)
+                  ? 'text-white font-medium'
+                  : 'text-white/60 hover:text-white'
                   }`}
               >
                 {link.label}
@@ -65,20 +65,17 @@ export function Navigation() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-4">
             <Link
               href="/print-store"
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-body transition-all duration-300 ${isActive('/print-store')
-                  ? 'bg-[#c4a35a] text-forest-dark'
-                  : 'bg-white/10 text-white hover:bg-white/20'
-                }`}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-[15px] font-body transition-colors duration-300 border border-white/20 hover:border-white/40 hover:bg-white/10 text-white`}
             >
               <ShoppingCart className="w-4 h-4" />
               Print Store
             </Link>
             <Link
               href="/booking"
-              className="px-5 py-2.5 bg-[#c4a35a] text-forest-dark text-sm font-sans font-semibold rounded-full hover:bg-[#c4a35a]/90 transition-colors"
+              className="px-6 py-2.5 bg-[#c4a35a] text-forest-dark text-[15px] font-bold font-sans rounded-full hover:bg-[#c4a35a]/90 transition-colors shadow-xs"
             >
               Book Now
             </Link>
@@ -105,8 +102,8 @@ export function Navigation() {
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`block text-lg font-body transition-colors duration-300 ${isActive(link.href)
-                    ? 'text-white'
-                    : 'text-white/60 hover:text-white'
+                  ? 'text-white'
+                  : 'text-white/60 hover:text-white'
                   }`}
               >
                 {link.label}
