@@ -83,7 +83,7 @@ export function Services() {
     <section
       ref={sectionRef}
       id="services"
-      className="relative w-full py-24 md:py-32 bg-forest-dark"
+      className="relative w-full py-24 md:py-32 bg-[#0F2617]"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-start">
@@ -140,13 +140,13 @@ export function Services() {
                   </div>
 
                   {/* Heavy Gradient Overlay so text remains 100% readable over the bright images */}
-                  <div className="absolute inset-0 -z-10 bg-gradient-to-br from-forest-dark/95 via-forest-dark/85 to-[#c4a35a]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-[800ms]" />
+                  <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#0F2617]/95 via-[#0F2617]/85 to-[#c4a35a]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-[800ms]" />
 
                   {/* Top Bar: Icon + Arrow */}
                   <div className="flex items-center justify-between mb-8 z-10 w-full transform transition-transform duration-[800ms] group-hover:-translate-y-1">
                     {/* Icon */}
                     <div className="w-14 h-14 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center group-hover:bg-[#c4a35a] group-hover:border-[#c4a35a] group-hover:shadow-[0_0_20px_rgba(196,163,90,0.5)] transition-all duration-500">
-                      <Icon className="w-6 h-6 text-[#c4a35a] group-hover:text-forest-dark transition-colors duration-500" strokeWidth={1.5} />
+                      <Icon className="w-6 h-6 text-[#c4a35a] group-hover:text-[#0F2617] transition-colors duration-500" strokeWidth={1.5} />
                     </div>
 
                     {/* Fly-in Arrow */}

@@ -18,41 +18,29 @@ export function Hero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Store ScrollTrigger instances for cleanup
-      const triggers: ScrollTrigger[] = [];
-
-      // Parallax effect for model (slower movement = appears closer)
-      const modelTrigger = ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1,
-        onUpdate: (self) => {
-          if (modelRef.current) {
-            gsap.set(modelRef.current, { yPercent: self.progress * 20 });
-          }
+      // Parallax effect for model — direct tween (GPU-accelerated, no onUpdate)
+      gsap.to(modelRef.current, {
+        yPercent: 20,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
         },
       });
-      triggers.push(modelTrigger);
 
-      // Fade out overlay text faster
-      const overlayTrigger = ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: 'top top',
-        end: '30% top',
-        scrub: 1,
-        onUpdate: (self) => {
-          if (overlayTextRef.current) {
-            gsap.set(overlayTextRef.current, { opacity: 1 - self.progress });
-          }
+      // Fade out overlay text
+      gsap.to(overlayTextRef.current, {
+        opacity: 0,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: '30% top',
+          scrub: true,
         },
       });
-      triggers.push(overlayTrigger);
-
-      // Cleanup function
-      return () => {
-        triggers.forEach((trigger) => trigger.kill());
-      };
     }, sectionRef);
 
     return () => ctx.revert();
@@ -61,7 +49,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-forest-dark"
+      className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#0F2617]"
     >
       {/* Layer 1: Background Base & Subtle Video */}
       <div className="absolute inset-0 z-0">
@@ -76,27 +64,22 @@ export function Hero() {
           <source src="https://assets.mixkit.co/videos/preview/mixkit-photographer-taking-photos-at-a-wedding-34421-large.mp4" type="video/mp4" />
         </video>
         {/* Dark overlay for text readability and premium look */}
-        <div className="absolute inset-0 bg-linear-to-b from-forest-dark/80 via-forest-dark/60 to-forest-dark/90" />
+        <div className="absolute inset-0 bg-linear-to-b from-[#0F2617]/80 via-[#0F2617]/60 to-[#0F2617]/90" />
       </div>
 
-      {/* Subtle texture overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03] z-1"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }}
-      />
 
-
-      {/* Layer 3: Primary Subtitle/Tagline Structured Behind the Image */}
+      {/* Layer 3: Full tagline — behind model so hero image overlaps "Creating Memories" */}
       {heroConfig.overlayText && (
         <div
           ref={overlayTextRef}
-          className="absolute inset-0 flex items-center justify-center z-[15] pointer-events-none px-4"
+          className="absolute inset-0 flex items-start justify-center pt-[24vh] md:pt-[26vh] z-[15] pointer-events-none px-4"
         >
-          <div className="flex flex-col items-center text-center max-w-4xl mx-auto -mt-20 md:-mt-32 drop-shadow-2xl">
+          <div className="flex flex-col items-center text-center max-w-4xl mx-auto drop-shadow-2xl -rotate-3">
             <p className="font-serif italic text-4xl md:text-5xl lg:text-7xl text-white/90 tracking-wide leading-tight">
-              {heroConfig.overlayText}
+              Capturing Moments,
+            </p>
+            <p className="font-serif italic text-4xl md:text-5xl lg:text-7xl text-white/90 tracking-wide leading-tight">
+              Creating Memories
             </p>
           </div>
         </div>
@@ -116,7 +99,7 @@ export function Hero() {
               loading="eager"
             />
             {/* Gradient fade at bottom for smooth transition to next section */}
-            <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-forest-dark via-forest-dark/80 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-[#0F2617] via-[#0F2617]/80 to-transparent" />
           </div>
         </div>
       )}

@@ -127,7 +127,7 @@ export function FeaturedProjects() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-24 md:py-32 bg-forest-dark"
+      className="relative w-full py-24 md:py-32 bg-[#0F2617]"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Section Header */}
@@ -189,7 +189,7 @@ export function FeaturedProjects() {
                 </div>
 
                 {/* Hover gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-forest-dark/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0F2617]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
 
               {/* Content */}

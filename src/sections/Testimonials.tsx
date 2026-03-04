@@ -80,12 +80,16 @@ export function Testimonials() {
           modules={[Autoplay, FreeMode]}
           spaceBetween={24}
           slidesPerView={1.2}
-          centeredSlides={true}
-          loop={false}
-          speed={800}
+          loop={true}
+          loopAdditionalSlides={4}
+          speed={5000}
           autoplay={{
-            delay: 4000,
+            delay: 0,
             disableOnInteraction: false,
+          }}
+          freeMode={{
+            enabled: true,
+            momentum: false,
           }}
           breakpoints={{
             640: {
@@ -105,22 +109,22 @@ export function Testimonials() {
               spaceBetween: 48,
             },
           }}
-          className="px-6!"
+          className="px-6! [&_.swiper-slide]:h-auto [&_.swiper-wrapper]:!ease-linear"
         >
-          {testimonialsConfig.testimonials.map((testimonial) => (
-            <SwiperSlide key={testimonial.id}>
-              <div className="group bg-offwhite rounded-lg p-8 md:p-10 h-full transition-all duration-500 hover:bg-forest-dark hover:text-white">
+          {[...testimonialsConfig.testimonials, ...testimonialsConfig.testimonials].map((testimonial, index) => (
+            <SwiperSlide key={`${testimonial.id}-${index}`} className="!h-auto">
+              <div className="group flex flex-col bg-offwhite rounded-lg p-8 md:p-10 h-full transition-all duration-500 hover:bg-[#0F2617] hover:text-white">
                 {/* Quote icon */}
                 <Quote className="w-10 h-10 text-softblack/10 group-hover:text-white/20 mb-6 transition-colors duration-500" strokeWidth={1} />
 
                 {/* Quote text */}
-                <p className="text-softblack/80 group-hover:text-white/90 font-body text-base md:text-lg leading-relaxed mb-8 transition-colors duration-500">
+                <p className="text-softblack/80 group-hover:text-white/90 font-body text-base md:text-lg leading-relaxed mb-8 transition-colors duration-500 flex-grow">
                   &ldquo;{testimonial.quote}&rdquo;
                 </p>
 
                 {/* Author */}
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full overflow-hidden">
+                <div className="flex items-center gap-4 mt-auto">
+                  <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
                     <img
                       src={testimonial.image}
                       alt={testimonial.name}

@@ -91,17 +91,17 @@ export function Preloader({ onComplete }: PreloaderProps) {
   return (
     <div
       ref={preloaderRef}
-      className="fixed inset-0 z-[100] bg-[#0d1310] flex items-center justify-center overflow-hidden"
+      className="fixed inset-0 z-[100] bg-[#0F2617] flex items-center justify-center overflow-hidden"
     >
       {/* Shutter Blades */}
       <div
         ref={shutterTopRef}
-        className="absolute top-0 left-0 right-0 h-1/2 bg-[#0d1310] origin-top"
+        className="absolute top-0 left-0 right-0 h-1/2 bg-[#0F2617] origin-top"
         style={{ transform: 'scaleY(0)' }}
       />
       <div
         ref={shutterBottomRef}
-        className="absolute bottom-0 left-0 right-0 h-1/2 bg-[#0d1310] origin-bottom"
+        className="absolute bottom-0 left-0 right-0 h-1/2 bg-[#0F2617] origin-bottom"
         style={{ transform: 'scaleY(0)' }}
       />
 
