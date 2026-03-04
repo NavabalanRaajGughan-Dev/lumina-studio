@@ -109,39 +109,62 @@ export function Services() {
           </div>
 
           {/* Right Column - Services Grid */}
-          <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/10">
+          <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
             {servicesConfig.services.map((service, index) => {
               const Icon = iconMap[service.iconName] || Camera;
+              // Hardcoded beautiful background images corresponding to the services
+              const bgImages = [
+                "/portfolio/portrait-1.jpg",
+                "/portfolio/wedding-1.jpg",
+                "/portfolio/event-1.jpg",
+                "/portfolio/fashion-1.jpg",
+                "/portfolio/commercial-1.jpg",
+                "/projects/commercial-collection.jpg",
+                "/features/equipment.jpg",
+                "/testimonials/client-4.jpg"
+              ];
+              const hoverImg = bgImages[index % bgImages.length];
+
               return (
                 <div
                   key={index}
-                  className="service-card group bg-forest-dark p-6 md:p-8 opacity-0 transition-all duration-500 hover:bg-forest-mid cursor-pointer"
+                  className="service-card group relative flex flex-col justify-between overflow-hidden rounded-[2rem] bg-white/5 border border-white/10 p-6 md:p-8 opacity-0 transition-all duration-[800ms] hover:-translate-y-2 hover:border-[#c4a35a]/40 hover:shadow-[0_15px_50px_rgba(196,163,90,0.15)] cursor-pointer isolate min-h-[280px]"
                 >
-                  <div className="mb-4">
-                    <Icon className="w-8 h-8 text-white/70 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                  {/* Image Reveal on Hover */}
+                  <div className="absolute inset-0 -z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)]">
+                    <img
+                      src={hoverImg}
+                      alt={service.title}
+                      className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)]"
+                    />
                   </div>
-                  <h3 className="text-lg md:text-xl font-sans font-semibold text-white mb-3 group-hover:translate-x-1 transition-transform duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-white/50 font-body leading-relaxed group-hover:text-white/70 transition-colors duration-300">
-                    {service.description}
-                  </p>
 
-                  {/* Arrow indicator */}
-                  <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <svg
-                      className="w-5 h-5 text-white/60"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
+                  {/* Heavy Gradient Overlay so text remains 100% readable over the bright images */}
+                  <div className="absolute inset-0 -z-10 bg-gradient-to-br from-forest-dark/95 via-forest-dark/85 to-[#c4a35a]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-[800ms]" />
+
+                  {/* Top Bar: Icon + Arrow */}
+                  <div className="flex items-center justify-between mb-8 z-10 w-full transform transition-transform duration-[800ms] group-hover:-translate-y-1">
+                    {/* Icon */}
+                    <div className="w-14 h-14 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center group-hover:bg-[#c4a35a] group-hover:border-[#c4a35a] group-hover:shadow-[0_0_20px_rgba(196,163,90,0.5)] transition-all duration-500">
+                      <Icon className="w-6 h-6 text-[#c4a35a] group-hover:text-forest-dark transition-colors duration-500" strokeWidth={1.5} />
+                    </div>
+
+                    {/* Fly-in Arrow */}
+                    <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-0 -translate-x-6 group-hover:opacity-100 group-hover:translate-x-0 group-hover:bg-white/10 transition-all duration-500 ease-out transform">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Text Content */}
+                  <div className="mt-auto z-10 transform transition-transform duration-[800ms] group-hover:-translate-y-1">
+                    <h3 className="text-xl md:text-2xl font-sans font-bold text-white mb-3 group-hover:text-white transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm md:text-base text-white/50 font-body leading-relaxed group-hover:text-white/80 transition-colors duration-300">
+                      {service.description}
+                    </p>
                   </div>
                 </div>
               );
