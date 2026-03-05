@@ -82,6 +82,36 @@ export function About() {
         { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }
       );
 
+      // Image reveal animations (bottom-to-top clip-path wipe)
+      // Initial clip state is set via inline CSS to prevent flash
+      const revealImages = document.querySelectorAll('.img-reveal');
+      revealImages.forEach((img) => {
+        ScrollTrigger.create({
+          trigger: img,
+          start: 'top 85%',
+          onEnter: () => {
+            gsap.to(img, {
+              clipPath: 'inset(0% 0 0 0)',
+              duration: 1.2,
+              ease: 'power4.inOut',
+            });
+          },
+          once: true,
+        });
+      });
+
+      // Hero image — animate immediately (no scroll trigger)
+      // Initial clip state is set via inline CSS to prevent flash
+      const heroImage = heroRef.current?.querySelector('.img-reveal-hero');
+      if (heroImage) {
+        gsap.to(heroImage, {
+          clipPath: 'inset(0% 0 0 0)',
+          duration: 1.4,
+          ease: 'power4.inOut',
+          delay: 0.3,
+        });
+      }
+
       // Story section
       ScrollTrigger.create({
         trigger: storyRef.current,
@@ -96,19 +126,28 @@ export function About() {
         once: true,
       });
 
-      // Team cards
+      // Team cards — unified card + image reveal
       const teamCards = teamRef.current?.querySelectorAll('.team-card');
       if (teamCards) {
         teamCards.forEach((card, index) => {
+          const img = card.querySelector('.team-img');
           ScrollTrigger.create({
             trigger: card,
             start: 'top 85%',
             onEnter: () => {
-              gsap.fromTo(
+              const tl = gsap.timeline();
+              tl.fromTo(
                 card,
-                { y: 60, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: index * 0.1 }
+                { y: 50, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', delay: index * 0.1 }
               );
+              if (img) {
+                tl.to(
+                  img,
+                  { clipPath: 'inset(0% 0 0 0)', duration: 1, ease: 'power4.inOut' },
+                  '<0.1'
+                );
+              }
             },
             once: true,
           });
@@ -141,7 +180,7 @@ export function About() {
   return (
     <div className="relative w-full bg-forest-dark min-h-screen">
       {/* Hero Section */}
-      <div ref={heroRef} className="relative pt-32 pb-20">
+      <div ref={heroRef} className="relative pt-32 pb-20" style={{ opacity: 0 }}>
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -164,7 +203,7 @@ export function About() {
               </p>
             </div>
             <div className="relative">
-              <div className="aspect-[4/5] rounded-2xl overflow-hidden">
+              <div className="img-reveal-hero aspect-[4/5] rounded-2xl overflow-hidden" style={{ clipPath: 'inset(100% 0 0 0)' }}>
                 <img
                   src="/features/studio.jpg"
                   alt="Lumina Photography Studio"
@@ -214,14 +253,14 @@ export function About() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1">
               <div className="grid grid-cols-2 gap-4">
-                <div className="aspect-[3/4] rounded-xl overflow-hidden">
+                <div className="img-reveal aspect-[3/4] rounded-xl overflow-hidden" style={{ clipPath: 'inset(100% 0 0 0)' }}>
                   <img
                     src="/features/equipment.jpg"
                     alt="Studio Equipment"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="aspect-[3/4] rounded-xl overflow-hidden mt-8">
+                <div className="img-reveal aspect-[3/4] rounded-xl overflow-hidden mt-8" style={{ clipPath: 'inset(100% 0 0 0)' }}>
                   <img
                     src="/features/team.jpg"
                     alt="Our Team"
@@ -314,7 +353,7 @@ export function About() {
                 key={index}
                 className="team-card group"
               >
-                <div className="relative aspect-[3/4] rounded-xl overflow-hidden mb-4">
+                <div className="team-img relative aspect-[3/4] rounded-xl overflow-hidden mb-4" style={{ clipPath: 'inset(100% 0 0 0)' }}>
                   <img
                     src={member.image}
                     alt={member.name}
