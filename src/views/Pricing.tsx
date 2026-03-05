@@ -219,8 +219,8 @@ function PackageCard({ pkg }: { pkg: PricingPackage }) {
   return (
     <div
       className={`relative rounded-2xl p-8 transition-all duration-500 ${pkg.highlighted
-          ? 'bg-gradient-to-b from-[#c4a35a]/20 to-[#8b7355]/10 border-2 border-[#c4a35a]/50 scale-105'
-          : 'bg-forest-mid/50 border border-white/10 hover:border-white/20'
+        ? 'bg-gradient-to-b from-[#c4a35a]/20 to-[#8b7355]/10 border-2 border-[#c4a35a]/50 scale-105'
+        : 'bg-forest-mid/50 border border-white/10 hover:border-white/20'
         }`}
     >
       {pkg.popular && (
@@ -261,8 +261,8 @@ function PackageCard({ pkg }: { pkg: PricingPackage }) {
       <Link
         href="/contact"
         className={`w-full py-3 rounded-full font-sans font-semibold text-center flex items-center justify-center gap-2 transition-all duration-300 ${pkg.highlighted
-            ? 'bg-white text-forest-dark hover:bg-white/90'
-            : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
+          ? 'bg-white text-forest-dark hover:bg-white/90'
+          : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
           }`}
       >
         Book Now
@@ -309,7 +309,7 @@ export function Pricing() {
   }, []);
 
   return (
-    <div className="relative w-full bg-forest-dark min-h-screen pt-32 pb-24">
+    <div className="relative w-full bg-forest-dark min-h-[100dvh] pt-32 pb-24">
       {/* Header */}
       <div ref={headerRef} className="max-w-7xl mx-auto px-6 md:px-12 mb-16">
         <p className="text-white/50 text-sm font-body uppercase tracking-widest mb-4">

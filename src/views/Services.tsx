@@ -201,7 +201,7 @@ export function Services() {
   }, []);
 
   return (
-    <div className="relative w-full bg-forest-dark min-h-screen pt-32 pb-24">
+    <div className="relative w-full bg-forest-dark min-h-[100dvh] pt-32 pb-24">
       {/* Header */}
       <div ref={headerRef} className="max-w-7xl mx-auto px-6 md:px-12 mb-16">
         <p className="text-white/50 text-sm font-body uppercase tracking-widest mb-4">

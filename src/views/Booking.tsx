@@ -216,7 +216,7 @@ export function Booking() {
   today.setHours(0, 0, 0, 0);
 
   return (
-    <div className="relative w-full bg-forest-dark min-h-screen pt-32 pb-24">
+    <div className="relative w-full bg-forest-dark min-h-[100dvh] pt-32 pb-24">
       {/* Header */}
       <div ref={headerRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         <p className="text-white/50 text-sm font-body uppercase tracking-widest mb-4">

@@ -231,7 +231,7 @@ export function PrintStore() {
   };
 
   return (
-    <div className="relative w-full bg-forest-dark min-h-screen pt-32 pb-24">
+    <div className="relative w-full bg-forest-dark min-h-[100dvh] pt-32 pb-24">
       {/* Header */}
       <div ref={headerRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -326,6 +326,8 @@ export function PrintStore() {
                   {selectedProduct.name}
                 </h2>
                 <button
+                  title="Close Modal"
+                  aria-label="Close Modal"
                   onClick={() => setSelectedProduct(null)}
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
                 >
@@ -356,8 +358,8 @@ export function PrintStore() {
                         key={size.name}
                         onClick={() => setSelectedSize(size.name)}
                         className={`p-3 rounded-lg border transition-all duration-300 ${selectedSize === size.name
-                            ? 'border-[#c4a35a] bg-[#c4a35a]/10'
-                            : 'border-white/20 hover:border-white/40'
+                          ? 'border-[#c4a35a] bg-[#c4a35a]/10'
+                          : 'border-white/20 hover:border-white/40'
                           }`}
                       >
                         <p className="text-white text-sm font-body">{size.name}</p>
@@ -375,6 +377,8 @@ export function PrintStore() {
                 </label>
                 <div className="flex items-center gap-4">
                   <button
+                    title="Decrease Quantity"
+                    aria-label="Decrease Quantity"
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
                     className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
                   >
@@ -384,6 +388,8 @@ export function PrintStore() {
                     {quantity}
                   </span>
                   <button
+                    title="Increase Quantity"
+                    aria-label="Increase Quantity"
                     onClick={() => setQuantity(quantity + 1)}
                     className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
                   >
@@ -422,6 +428,8 @@ export function PrintStore() {
                   Your Cart
                 </h2>
                 <button
+                  title="Close Cart"
+                  aria-label="Close Cart"
                   onClick={() => setShowCart(false)}
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
                 >
@@ -477,6 +485,8 @@ export function PrintStore() {
                           </p>
                           <div className="flex items-center gap-2 mt-2">
                             <button
+                              title="Decrease Quantity"
+                              aria-label="Decrease Quantity"
                               onClick={() => updateQuantity(index, -1)}
                               className="w-6 h-6 rounded bg-white/10 flex items-center justify-center text-white hover:bg-white/20"
                             >
@@ -486,6 +496,8 @@ export function PrintStore() {
                               {item.quantity}
                             </span>
                             <button
+                              title="Increase Quantity"
+                              aria-label="Increase Quantity"
                               onClick={() => updateQuantity(index, 1)}
                               className="w-6 h-6 rounded bg-white/10 flex items-center justify-center text-white hover:bg-white/20"
                             >
@@ -498,6 +510,8 @@ export function PrintStore() {
                             LKR {(item.finalPrice * item.quantity).toLocaleString()}
                           </p>
                           <button
+                            title="Remove Item"
+                            aria-label="Remove Item"
                             onClick={() => removeFromCart(index)}
                             className="mt-2 text-red-400 hover:text-red-300 transition-colors"
                           >

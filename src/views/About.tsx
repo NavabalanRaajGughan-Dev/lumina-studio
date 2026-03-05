@@ -178,7 +178,7 @@ export function About() {
   }, []);
 
   return (
-    <div className="relative w-full bg-forest-dark min-h-screen">
+    <div className="relative w-full bg-forest-dark min-h-[100dvh]">
       {/* Hero Section */}
       <div ref={heroRef} className="relative pt-32 pb-20 opacity-0">
         <div className="max-w-7xl mx-auto px-6 md:px-12">

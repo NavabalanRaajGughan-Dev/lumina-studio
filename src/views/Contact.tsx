@@ -129,7 +129,7 @@ export function Contact() {
   ];
 
   return (
-    <div className="relative w-full bg-forest-dark min-h-screen pt-32 pb-24">
+    <div className="relative w-full bg-forest-dark min-h-[100dvh] pt-32 pb-24">
       {/* Header */}
       <div ref={headerRef} className="max-w-7xl mx-auto px-6 md:px-12 mb-16">
         <p className="text-white/50 text-sm font-body uppercase tracking-widest mb-4">
@@ -221,6 +221,7 @@ export function Contact() {
                       </label>
                       <select
                         name="service"
+                        title="Service Interested In"
                         value={formData.service}
                         onChange={handleChange}
                         className="w-full px-4 py-3 bg-forest-dark border border-white/20 rounded-lg text-white font-body focus:outline-none focus:border-[#c4a35a] transition-colors appearance-none cursor-pointer"
@@ -307,6 +308,7 @@ export function Contact() {
                   href="https://instagram.com/luminastudio"
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="Visit our Instagram"
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#c4a35a] transition-colors"
                 >
                   <Instagram className="w-5 h-5" />
@@ -315,6 +317,7 @@ export function Contact() {
                   href="https://facebook.com/luminastudio"
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="Visit our Facebook page"
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#c4a35a] transition-colors"
                 >
                   <Facebook className="w-5 h-5" />
@@ -323,6 +326,7 @@ export function Contact() {
                   href="https://linkedin.com/company/luminastudio"
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="Visit our LinkedIn profile"
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#c4a35a] transition-colors"
                 >
                   <Linkedin className="w-5 h-5" />
@@ -340,11 +344,11 @@ export function Contact() {
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.798511757686!2d79.8486!3d6.9271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2593b0fc9d3f7%3A0x2a2c3c4d5e6f7g8h!2sGalle%20Rd%2C%20Colombo%2C%20Sri%20Lanka!5e0!3m2!1sen!2s!4v1234567890"
             width="100%"
             height="400"
-            style={{ border: 0 }}
+            title="Lumina Studio Map Location"
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            className="grayscale hover:grayscale-0 transition-all duration-500"
+            className="border-0 grayscale hover:grayscale-0 transition-all duration-500"
           />
         </div>
       </div>

@@ -11,12 +11,16 @@ export function useLenis() {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    // Configure ScrollTrigger to not jump/recalculate when mobile browser UI hides/shows
+    ScrollTrigger.config({ ignoreMobileResize: true });
+
     // Initialize Lenis with premium feel settings
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      touchMultiplier: 2,
+      syncTouch: true, // Sync touch scroll to prevent native vs JS scroll fighting
+      touchMultiplier: 1.5, // Reduced from 2 for more natural mobile feel
     });
 
     lenisRef.current = lenis;

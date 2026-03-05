@@ -60,7 +60,7 @@ export function ClientShell({ children }: { children: React.ReactNode }) {
     return (
         <>
             {isPreloaderVisible && <Preloader onComplete={handlePreloaderComplete} title={pageName} />}
-            <div className="relative min-h-screen">
+            <div className="relative min-h-[100dvh]">
                 <Navigation />
                 <main className="relative">{children}</main>
                 <Footer />
