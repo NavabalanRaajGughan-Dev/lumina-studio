@@ -180,7 +180,7 @@ export function About() {
   return (
     <div className="relative w-full bg-forest-dark min-h-screen">
       {/* Hero Section */}
-      <div ref={heroRef} className="relative pt-32 pb-20" style={{ opacity: 0 }}>
+      <div ref={heroRef} className="relative pt-32 pb-20 opacity-0">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -203,7 +203,7 @@ export function About() {
               </p>
             </div>
             <div className="relative">
-              <div className="img-reveal-hero aspect-[4/5] rounded-2xl overflow-hidden" style={{ clipPath: 'inset(100% 0 0 0)' }}>
+              <div className="img-reveal-hero aspect-[4/5] rounded-2xl overflow-hidden [clip-path:inset(100%_0_0_0)]">
                 <img
                   src="/features/studio.jpg"
                   alt="Lumina Photography Studio"
@@ -253,14 +253,14 @@ export function About() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1">
               <div className="grid grid-cols-2 gap-4">
-                <div className="img-reveal aspect-[3/4] rounded-xl overflow-hidden" style={{ clipPath: 'inset(100% 0 0 0)' }}>
+                <div className="img-reveal aspect-[3/4] rounded-xl overflow-hidden [clip-path:inset(100%_0_0_0)]">
                   <img
                     src="/features/equipment.jpg"
                     alt="Studio Equipment"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="img-reveal aspect-[3/4] rounded-xl overflow-hidden mt-8" style={{ clipPath: 'inset(100% 0 0 0)' }}>
+                <div className="img-reveal aspect-[3/4] rounded-xl overflow-hidden mt-8 [clip-path:inset(100%_0_0_0)]">
                   <img
                     src="/features/team.jpg"
                     alt="Our Team"
@@ -353,7 +353,7 @@ export function About() {
                 key={index}
                 className="team-card group"
               >
-                <div className="team-img relative aspect-[3/4] rounded-xl overflow-hidden mb-4" style={{ clipPath: 'inset(100% 0 0 0)' }}>
+                <div className="team-img relative aspect-[3/4] rounded-xl overflow-hidden mb-4 [clip-path:inset(100%_0_0_0)]">
                   <img
                     src={member.image}
                     alt={member.name}
