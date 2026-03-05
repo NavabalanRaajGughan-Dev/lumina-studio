@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
@@ -132,9 +133,11 @@ export function Services() {
                 >
                   {/* Image Reveal on Hover */}
                   <div className="absolute inset-0 -z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)]">
-                    <img
+                    <Image
                       src={hoverImg}
                       alt={service.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
                       className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)]"
                     />
                   </div>

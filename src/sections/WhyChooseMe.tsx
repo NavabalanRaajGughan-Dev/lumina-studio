@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { whyChooseMeConfig } from '../config';
@@ -252,11 +253,12 @@ export function WhyChooseMe() {
           {whyChooseMeConfig.featureCards.map((card, index) => (
             <div key={index} className="feature-card-image opacity-0 group">
               <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-forest-dark">
-                <img
+                <Image
                   src={card.image}
                   alt={card.imageAlt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="w-full h-full object-cover will-change-transform"
-                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-forest-dark/80 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6">
@@ -308,11 +310,12 @@ export function WhyChooseMe() {
         {whyChooseMeConfig.wideImage && (
           <div ref={wideRef} className="mt-16 md:mt-24 relative rounded-lg overflow-hidden group opacity-0">
             <div className="aspect-[21/9] md:aspect-[3/1] overflow-hidden">
-              <img
+              <Image
                 src={whyChooseMeConfig.wideImage}
                 alt={whyChooseMeConfig.wideImageAlt}
+                fill
+                sizes="100vw"
                 className="w-full h-full object-cover will-change-transform"
-                loading="lazy"
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-r from-forest-dark/60 via-transparent to-transparent" />

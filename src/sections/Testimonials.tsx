@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -125,11 +126,12 @@ export function Testimonials() {
                 {/* Author */}
                 <div className="flex items-center gap-4 mt-auto">
                   <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
-                    <img
+                    <Image
                       src={testimonial.image}
                       alt={testimonial.name}
+                      width={48}
+                      height={48}
                       className="w-full h-full object-cover"
-                      loading="lazy"
                     />
                   </div>
                   <div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from 'lucide-react';
@@ -167,11 +168,12 @@ export function FeaturedProjects() {
                   }`}
               >
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="project-image w-full h-full object-cover will-change-transform"
-                    loading="lazy"
                   />
                 </div>
 

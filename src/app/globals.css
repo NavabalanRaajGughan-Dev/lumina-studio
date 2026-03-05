@@ -4,10 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  /* Font families */
-  --font-sans: 'Manrope', sans-serif;
-  --font-serif: 'Playfair Display', serif;
-  --font-body: 'DM Sans', sans-serif;
+  /* Font families (powered by next/font CSS variables) */
+  --font-sans: var(--font-manrope), sans-serif;
+  --font-serif: var(--font-playfair), serif;
+  --font-body: var(--font-dm-sans), sans-serif;
 
   /* Custom brand colors */
   --color-forest-dark: #0F2617;
@@ -63,28 +63,61 @@
   --animate-scale-in: scale-in 0.8s ease-out forwards;
 
   @keyframes accordion-down {
-    from { height: 0; }
-    to { height: var(--radix-accordion-content-height); }
+    from {
+      height: 0;
+    }
+
+    to {
+      height: var(--radix-accordion-content-height);
+    }
   }
 
   @keyframes accordion-up {
-    from { height: var(--radix-accordion-content-height); }
-    to { height: 0; }
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+
+    to {
+      height: 0;
+    }
   }
 
   @keyframes caret-blink {
-    0%, 70%, 100% { opacity: 1; }
-    20%, 50% { opacity: 0; }
+
+    0%,
+    70%,
+    100% {
+      opacity: 1;
+    }
+
+    20%,
+    50% {
+      opacity: 0;
+    }
   }
 
   @keyframes fade-in-up {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @keyframes scale-in {
-    0% { opacity: 0; transform: scale(1.1); }
-    100% { opacity: 1; transform: scale(1); }
+    0% {
+      opacity: 0;
+      transform: scale(1.1);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 }
 
@@ -158,24 +191,29 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-dm-sans), sans-serif;
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Manrope', sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-manrope), sans-serif;
   }
 
   .font-serif {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-playfair), serif;
   }
 
   .font-sans {
-    font-family: 'Manrope', sans-serif;
+    font-family: var(--font-manrope), sans-serif;
   }
 
   .font-body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-dm-sans), sans-serif;
   }
 }
 
@@ -184,6 +222,7 @@
 /* =============================== */
 
 @layer components {
+
   /* Viewfinder overlay effect */
   .viewfinder {
     position: relative;
@@ -247,7 +286,8 @@
 /* =============================== */
 
 /* Smooth scroll behavior for Lenis */
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 

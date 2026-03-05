@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
+import NextImage from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
@@ -275,9 +276,11 @@ export function PrintStore() {
                 className="product-card bg-forest-mid/50 rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300"
               >
                 <div className="relative h-48 overflow-hidden">
-                  <img
+                  <NextImage
                     src={product.image}
                     alt={product.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute top-4 left-4 w-10 h-10 rounded-lg bg-forest-dark/80 flex items-center justify-center">
@@ -335,9 +338,11 @@ export function PrintStore() {
                 </button>
               </div>
 
-              <img
+              <NextImage
                 src={selectedProduct.image}
                 alt={selectedProduct.name}
+                width={600}
+                height={200}
                 className="w-full h-48 object-cover rounded-xl mb-6"
               />
 
@@ -471,9 +476,11 @@ export function PrintStore() {
                         key={index}
                         className="bg-forest-mid/50 rounded-xl p-4 flex gap-4"
                       >
-                        <img
+                        <NextImage
                           src={item.image}
                           alt={item.name}
+                          width={80}
+                          height={80}
                           className="w-20 h-20 object-cover rounded-lg"
                         />
                         <div className="flex-1">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -193,9 +194,11 @@ export function Portfolio() {
               className="portfolio-item group relative aspect-[4/5] overflow-hidden rounded-lg cursor-pointer"
               onClick={() => openLightbox(index)}
             >
-              <img
+              <Image
                 src={item.image}
                 alt={item.title}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               {/* Overlay */}
@@ -254,9 +257,11 @@ export function Portfolio() {
 
           {/* Image */}
           <div className="max-w-5xl max-h-[80vh] px-20">
-            <img
+            <Image
               src={filteredItems[currentImageIndex].image}
               alt={filteredItems[currentImageIndex].title}
+              width={1200}
+              height={800}
               className="max-w-full max-h-[70vh] object-contain rounded-lg"
             />
             <div className="mt-6 text-center">

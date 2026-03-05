@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Award, Camera, Users, Heart, Star } from 'lucide-react';
@@ -204,10 +205,13 @@ export function About() {
             </div>
             <div className="relative">
               <div className="img-reveal-hero aspect-[4/5] rounded-2xl overflow-hidden [clip-path:inset(100%_0_0_0)]">
-                <img
+                <Image
                   src="/features/studio.jpg"
                   alt="Lumina Photography Studio"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="w-full h-full object-cover"
+                  priority
                 />
               </div>
               {/* Floating Stats */}
@@ -254,16 +258,20 @@ export function About() {
             <div className="order-2 lg:order-1">
               <div className="grid grid-cols-2 gap-4">
                 <div className="img-reveal aspect-[3/4] rounded-xl overflow-hidden [clip-path:inset(100%_0_0_0)]">
-                  <img
+                  <Image
                     src="/features/equipment.jpg"
                     alt="Studio Equipment"
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 25vw"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="img-reveal aspect-[3/4] rounded-xl overflow-hidden mt-8 [clip-path:inset(100%_0_0_0)]">
-                  <img
+                  <Image
                     src="/features/team.jpg"
                     alt="Our Team"
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 25vw"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -354,9 +362,11 @@ export function About() {
                 className="team-card group"
               >
                 <div className="team-img relative aspect-[3/4] rounded-xl overflow-hidden mb-4 [clip-path:inset(100%_0_0_0)]">
-                  <img
+                  <Image
                     src={member.image}
                     alt={member.name}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest-dark/80 via-transparent to-transparent" />

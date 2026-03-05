@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
@@ -228,9 +229,11 @@ export function Services() {
               >
                 {/* Image */}
                 <div className="relative h-64 overflow-hidden">
-                  <img
+                  <Image
                     src={service.image}
                     alt={service.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest-mid to-transparent" />

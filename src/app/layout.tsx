@@ -1,5 +1,29 @@
 import type { Metadata } from "next";
+import { DM_Sans, Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
+
+const dmSans = DM_Sans({
+    subsets: ["latin"],
+    weight: ["400", "500", "600"],
+    style: ["normal", "italic"],
+    variable: "--font-dm-sans",
+    display: "swap",
+});
+
+const manrope = Manrope({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700", "800"],
+    variable: "--font-manrope",
+    display: "swap",
+});
+
+const playfair = Playfair_Display({
+    subsets: ["latin"],
+    weight: ["400", "500", "600"],
+    style: ["normal", "italic"],
+    variable: "--font-playfair",
+    display: "swap",
+});
 
 export const metadata: Metadata = {
     title: "Lumina Photography Studio | Sri Lanka",
@@ -7,31 +31,22 @@ export const metadata: Metadata = {
         "Premium photography studio in Sri Lanka specializing in portrait, wedding, event, fashion, commercial, and architectural photography. Capturing moments that last forever.",
 };
 
+// Import the client shell to keep layout a server component
+import { ClientShell } from "@/components/ClientShell";
+
 export default function RootLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en">
-            <head>
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link
-                    rel="preconnect"
-                    href="https://fonts.gstatic.com"
-                    crossOrigin="anonymous"
-                />
-                <link
-                    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap"
-                    rel="stylesheet"
-                />
-            </head>
+        <html
+            lang="en"
+            className={`${dmSans.variable} ${manrope.variable} ${playfair.variable}`}
+        >
             <body>
                 <ClientShell>{children}</ClientShell>
             </body>
         </html>
     );
 }
-
-// Import the client shell lazily to keep layout a server component
-import { ClientShell } from "@/components/ClientShell";

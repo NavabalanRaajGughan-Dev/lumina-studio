@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { introGridConfig } from '../config';
@@ -188,11 +189,12 @@ export function IntroGrid() {
               className={`grid-item relative overflow-hidden rounded-lg group cursor-pointer opacity-0 ${index === 0 ? 'md:col-span-1 md:row-span-2' : ''
                 } ${index === 3 ? 'row-span-2' : ''}`}
             >
-              <img
+              <Image
                 src={image.src}
                 alt={image.alt}
+                fill
+                sizes="(max-width: 768px) 50vw, 33vw"
                 className="w-full h-full object-cover will-change-transform"
-                loading="lazy"
               />
 
               {/* Hover overlay */}
