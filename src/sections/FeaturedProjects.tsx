@@ -167,7 +167,7 @@ export function FeaturedProjects() {
                 className={`project-image-wrap relative overflow-hidden rounded-lg group cursor-pointer opacity-0 ${index % 2 === 1 ? 'md:order-2' : ''
                   }`}
               >
-                <div className="aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
                     src={project.image}
                     alt={project.title}

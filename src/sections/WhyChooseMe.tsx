@@ -309,7 +309,7 @@ export function WhyChooseMe() {
         {/* Wide Landscape Image */}
         {whyChooseMeConfig.wideImage && (
           <div ref={wideRef} className="mt-16 md:mt-24 relative rounded-lg overflow-hidden group opacity-0">
-            <div className="aspect-[21/9] md:aspect-[3/1] overflow-hidden">
+            <div className="relative aspect-[21/9] md:aspect-[3/1] overflow-hidden">
               <Image
                 src={whyChooseMeConfig.wideImage}
                 alt={whyChooseMeConfig.wideImageAlt}

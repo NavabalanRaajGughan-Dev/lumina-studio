@@ -5,21 +5,27 @@ import dynamic from "next/dynamic";
 import { Hero } from "@/sections/Hero";
 
 const IntroGrid = dynamic(() => import("@/sections/IntroGrid").then((m) => ({ default: m.IntroGrid })), {
+    ssr: false,
     loading: () => <SectionSkeleton />,
 });
 const ServicesSection = dynamic(() => import("@/sections/Services").then((m) => ({ default: m.Services })), {
+    ssr: false,
     loading: () => <SectionSkeleton />,
 });
 const WhyChooseMe = dynamic(() => import("@/sections/WhyChooseMe").then((m) => ({ default: m.WhyChooseMe })), {
+    ssr: false,
     loading: () => <SectionSkeleton />,
 });
 const FeaturedProjects = dynamic(() => import("@/sections/FeaturedProjects").then((m) => ({ default: m.FeaturedProjects })), {
+    ssr: false,
     loading: () => <SectionSkeleton />,
 });
 const Testimonials = dynamic(() => import("@/sections/Testimonials").then((m) => ({ default: m.Testimonials })), {
+    ssr: false,
     loading: () => <SectionSkeleton />,
 });
 const FAQ = dynamic(() => import("@/sections/FAQ").then((m) => ({ default: m.FAQ })), {
+    ssr: false,
     loading: () => <SectionSkeleton />,
 });
 
